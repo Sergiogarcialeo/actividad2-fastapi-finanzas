@@ -1,0 +1,30 @@
+# Entornos virtuales
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Editores
+.vscode/
+.idea/
+
+# Secretos locales
+.env
+.env.*
+!.env.example
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store

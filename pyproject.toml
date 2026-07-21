@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "actividad2-fastapi-finanzas"
+version = "0.1.0"
+description = "API financiera educativa con FastAPI, yfinance y Docker"
+authors = ["Equipo Actividad 2"]
+readme = "README.md"
+packages = [{ include = "financial_api", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.0"
+yfinance = "^0.2.50"
+pyarrow = "^18.0.0"
+scikit-learn = "^1.6.0"
+joblib = "^1.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
