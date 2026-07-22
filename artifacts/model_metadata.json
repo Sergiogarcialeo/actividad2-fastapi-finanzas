@@ -1,0 +1,27 @@
+{
+  "model_version": "random_forest_v1",
+  "model_type": "RandomForestClassifier",
+  "task": "trend_classification",
+  "description": "Clasificación educativa de tendencia: predice si el retorno del siguiente día será positivo.",
+  "symbols": [
+    "AAPL",
+    "GOOG",
+    "MSFT"
+  ],
+  "features": [
+    "return_1d",
+    "sma_5",
+    "sma_20",
+    "volatility_10",
+    "return_lag_1",
+    "return_lag_2"
+  ],
+  "target": "target_up_next_day",
+  "prediction_horizon": "next_day",
+  "trained_at": "2026-07-21T13:44:36.869710+00:00",
+  "metrics": {
+    "accuracy": 0.5586206896551724,
+    "f1_score": 0.5897435897435898
+  },
+  "disclaimer": "Herramienta académica. No constituye asesoría financiera."
+}

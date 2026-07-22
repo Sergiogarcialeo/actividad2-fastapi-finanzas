@@ -1,21 +1,29 @@
-# Ingesta de datos (`feature/data-ingestion`)
+# Actividad 2 - API Financiera con FastAPI
 
-Este paquete corresponde a la rama **`feature/data-ingestion`** del proyecto.
+Proyecto educativo de inferencia financiera con datos cacheados, modelo serializado y entrenamiento reproducible.
+
+## Rama actual
+
+`feature/model-training`
 
 ## Qué incluye
 
 - Descarga de **3 activos** con `yfinance`: `AAPL`, `MSFT`, `GOOG`
 - Datos crudos en `data/raw/`
 - Features procesadas en `data/processed/`
+- Entrenamiento y serialización del modelo en `artifacts/`
 - Módulos:
   - `src/financial_api/data.py`
   - `src/financial_api/features.py`
+  - `src/financial_api/train.py`
 
-## Comandos
+## Flujo de esta rama
 
 ```bash
 poetry install
 poetry run python -m financial_api.data
+poetry run python -m financial_api.train
+poetry run pytest
 ```
 
 Opcional, volver a descargar con otros símbolos:
@@ -30,6 +38,8 @@ poetry run python -m financial_api.data --symbols AAPL MSFT GOOG --period 2y
 - `data/processed/aapl_features.parquet`, etc.
 - `data/processed/all_features.parquet`
 - `data/processed/all_features.csv`
+- `artifacts/model.joblib`
+- `artifacts/model_metadata.json`
 
 ## Features generadas
 
@@ -39,4 +49,15 @@ poetry run python -m financial_api.data --symbols AAPL MSFT GOOG --period 2y
 - `return_lag_1`, `return_lag_2`: rezagos
 - `target_up_next_day`: variable objetivo educativa (sube al día siguiente)
 
-> Herramienta académica. No es asesoría financiera.
+## Qué hace el entrenamiento
+
+- Usa `data/processed/all_features.parquet`
+- Entrena un `RandomForestClassifier`
+- Tarea: clasificar si el retorno del siguiente día será positivo
+- Guarda:
+  - `artifacts/model.joblib`
+  - `artifacts/model_metadata.json`
+
+## Disclaimer
+
+Herramienta académica de análisis de señales financieras. No constituye asesoría financiera ni recomendación de inversión.

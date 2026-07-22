@@ -4,17 +4,23 @@ from pathlib import Path
 
 import pandas as pd
 
-FEATURE_COLUMNS = [
-    "Date",
-    "Symbol",
-    "Close",
+MODEL_FEATURE_COLUMNS = [
     "return_1d",
     "sma_5",
     "sma_20",
     "volatility_10",
     "return_lag_1",
     "return_lag_2",
-    "target_up_next_day",
+]
+
+TARGET_COLUMN = "target_up_next_day"
+
+FEATURE_COLUMNS = [
+    "Date",
+    "Symbol",
+    "Close",
+    *MODEL_FEATURE_COLUMNS,
+    TARGET_COLUMN,
 ]
 
 
@@ -74,3 +80,12 @@ def load_processed_dataset(processed_dir: Path) -> pd.DataFrame:
             "Ejecuta primero: poetry run python -m financial_api.data"
         )
     return pd.read_parquet(combined_path)
+
+
+def get_symbol_features(processed_dir: Path, symbol: str) -> pd.DataFrame:
+    """Retorna las filas procesadas de un símbolo ordenadas por fecha."""
+    dataset = load_processed_dataset(processed_dir)
+    symbol_data = dataset[dataset["Symbol"] == symbol.upper()].copy()
+    if symbol_data.empty:
+        raise ValueError(f"Símbolo no encontrado en dataset local: {symbol}")
+    return symbol_data.sort_values("Date").reset_index(drop=True)
