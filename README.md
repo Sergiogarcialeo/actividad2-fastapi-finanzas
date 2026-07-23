@@ -114,6 +114,15 @@ docker compose up --build
 
 La API queda disponible en `http://localhost:8000/docs`.
 
+## Despliegue en Azure
+
+API publicada en Azure Container Apps (entorno de evaluación):
+
+| Recurso | URL |
+|---|---|
+| Swagger UI | https://actividad2-finanzas-api.mangoflower-7aebfde9.eastus.azurecontainerapps.io/docs |
+| Health check | https://actividad2-finanzas-api.mangoflower-7aebfde9.eastus.azurecontainerapps.io/health |
+
 ## Equipo
 
 Ver `TEAM.md` e `Integrantes.md` para roles y responsabilidades.
